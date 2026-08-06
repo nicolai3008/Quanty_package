@@ -1,0 +1,170 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Quanty",
+  "scopeName": "source.quanty",
+  "fileTypes": ["qty", "lua"],
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#strings" },
+    { "include": "#numbers" },
+    { "include": "#keywords" },
+    { "include": "#quanty-builtins" },
+    { "include": "#lua-stdlib" },
+    { "include": "#function-calls" },
+    { "include": "#operators" },
+    { "include": "#tables" }
+  ],
+  "repository": {
+
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.block.quanty",
+          "begin": "--\\[\\[",
+          "end": "\\]\\]"
+        },
+        {
+          "name": "comment.line.double-dash.quanty",
+          "match": "--.*$"
+        }
+      ]
+    },
+
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.quanty",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            { "name": "constant.character.escape.quanty", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.single.quanty",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            { "name": "constant.character.escape.quanty", "match": "\\\\." }
+          ]
+        },
+        {
+          "name": "string.quoted.other.multiline.quanty",
+          "begin": "\\[\\[",
+          "end": "\\]\\]"
+        }
+      ]
+    },
+
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.float.quanty",
+          "match": "\\b\\d+\\.\\d+([eE][+-]?\\d+)?\\b"
+        },
+        {
+          "name": "constant.numeric.integer.quanty",
+          "match": "\\b\\d+\\b"
+        },
+        {
+          "name": "constant.numeric.hex.quanty",
+          "match": "\\b0[xX][0-9a-fA-F]+\\b"
+        }
+      ]
+    },
+
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.quanty",
+          "match": "\\b(if|then|else|elseif|end|for|while|do|repeat|until|break|return|in|function|local)\\b"
+        },
+        {
+          "name": "keyword.operator.word.quanty",
+          "match": "\\b(and|or|not)\\b"
+        },
+        {
+          "name": "constant.language.quanty",
+          "match": "\\b(true|false|nil)\\b"
+        }
+      ]
+    },
+
+    "quanty-builtins": {
+      "patterns": [
+        {
+          "comment": "Core Quanty routines that build/act on Fock-space operators and states",
+          "name": "support.function.quanty",
+          "match": "\\b(NewOperator|Eigensystem|CreateSpectra|PotentialExpandedOnClm|Verbosity|SetGuiState|SetHamiltonianTerm|InitCoreDensity|Chop|LoadModule)\\b"
+        },
+        {
+          "comment": "Quanty namespace-style objects and enums",
+          "name": "support.class.quanty",
+          "match": "\\b(EnergyUnits|Complex|Matrix|Operator|Spectra)\\b"
+        },
+        {
+          "comment": "Common Quanty local variable naming pattern (OppXxx) — highlighted as a class-ish support scope",
+          "name": "support.variable.quanty",
+          "match": "\\bOpp[A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+
+    "lua-stdlib": {
+      "patterns": [
+        {
+          "name": "support.function.library.quanty",
+          "match": "\\b(print|pairs|ipairs|type|tostring|tonumber|require|dofile|loadfile|pcall|error|assert|select|unpack|setmetatable|getmetatable|rawget|rawset)\\b"
+        },
+        {
+          "name": "support.function.library.quanty",
+          "match": "\\b(math|string|table|io|os)\\.[A-Za-z_][A-Za-z0-9_]*\\b"
+        }
+      ]
+    },
+
+    "function-calls": {
+      "patterns": [
+        {
+          "comment": "identifier immediately followed by ( is treated as a function/routine call",
+          "match": "\\b([A-Za-z_][A-Za-z0-9_]*)\\s*(?=\\()",
+          "name": "entity.name.function.quanty"
+        }
+      ]
+    },
+
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.assignment.quanty",
+          "match": "="
+        },
+        {
+          "name": "keyword.operator.comparison.quanty",
+          "match": "(==|~=|<=|>=|<|>)"
+        },
+        {
+          "name": "keyword.operator.arithmetic.quanty",
+          "match": "(\\+|-|\\*|/|\\^|%|#)"
+        },
+        {
+          "name": "keyword.operator.concat.quanty",
+          "match": "\\.\\."
+        }
+      ]
+    },
+
+    "tables": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.table.begin.quanty",
+          "match": "\\{"
+        },
+        {
+          "name": "punctuation.definition.table.end.quanty",
+          "match": "\\}"
+        }
+      ]
+    }
+  }
+}

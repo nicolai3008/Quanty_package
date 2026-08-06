@@ -1,0 +1,30 @@
+{
+  "name": "quanty",
+  "displayName": "Quanty",
+  "description": "Syntax highlighting for Quanty scripts",
+  "version": "0.0.1",
+  "publisher": "Amin_N",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "quanty",
+        "aliases": ["Quanty", "quanty"],
+        "extensions": [".qty", ".Quanty"],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "quanty",
+        "scopeName": "source.quanty",
+        "path": "./syntaxes/quanty.tmLanguage.json"
+      }
+    ]
+  }
+}
